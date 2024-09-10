@@ -20,7 +20,7 @@ interface IFeeDto {
   operation: OperationDto;
 }
 
-class CalculateFeeDto implements IFeeDto {
+class FeeDto implements IFeeDto {
   @IsString()
   @IsNotEmpty()
   date: string;
@@ -42,4 +42,4 @@ class CalculateFeeDto implements IFeeDto {
   operation: OperationDto;
 }
 
-export default CalculateFeeDto;
+export default FeeDto;

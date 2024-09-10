@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CommissionController } from './commission.controller';
+import CommissionController from './commission.controller';
 
 describe('CommissionController', () => {
   let controller: CommissionController;

@@ -28,6 +28,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-useless-constructor': 'off',
+    'no-unused-vars': 'off',
+    'no-empty-function': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
