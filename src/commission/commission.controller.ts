@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Inject } from '@nestjs/common';
+import { Controller, Post, Body, Get, Inject, HttpCode } from '@nestjs/common';
 import PROVIDERS from '../const/providers';
 import CommissionService from './service/commission.service';
 import FileReaderService from './service/file-reader.service';
@@ -24,6 +24,7 @@ class CommissionController {
   }
 
   @Post()
+  @HttpCode(200)
   calculateFees(@Body() body: FeeDto[]) {
     return this.commissionService.calculateFees(body);
   }

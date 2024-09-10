@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import PROVIDERS from 'src/const/providers';
+import PROVIDERS from '../const/providers';
 import CommissionController from './commission.controller';
 import CommissionService from './service/commission.service';
 import FileReaderService from './service/file-reader.service';
