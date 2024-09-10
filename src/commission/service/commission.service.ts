@@ -1,11 +1,11 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { getDateInfo, formatMoney, loadApi } from '../utils';
+import { getDateInfo, formatMoney, loadApi } from '../../utils';
 import {
   FeeDto,
   IFeeConfigCashIn,
   IFeeConfigCashOutLegal,
   IFeeConfigCashOutNatural,
-} from './dto';
+} from '../dto';
 
 @Injectable()
 class CommissionService {

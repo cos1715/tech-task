@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HttpException } from '@nestjs/common';
 import CommissionService from './commission.service';
-import { loadApi, getDateInfo, formatMoney } from '../utils';
-import { FeeDto } from './dto';
+import { loadApi, getDateInfo, formatMoney } from '../../utils';
+import { FeeDto } from '../dto';
 
 const CASH_IN_FEE = { percents: 0.03, max: { amount: 5, currency: 'EUR' } };
 const CASH_OUT_NATURAL_FEE = {
@@ -14,7 +14,7 @@ const CASH_OUT_LEGAL_FEE = {
   min: { amount: 0.5, currency: 'EUR' },
 };
 
-jest.mock('../utils', () => ({
+jest.mock('../../utils', () => ({
   loadApi: jest.fn(),
   getDateInfo: jest.fn(),
   formatMoney: jest.fn(),

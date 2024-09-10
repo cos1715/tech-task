@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Inject } from '@nestjs/common';
 import PROVIDERS from '../const/providers';
-import CommissionService from './commission.service';
-import FileReaderService from './file-reader.service';
+import CommissionService from './service/commission.service';
+import FileReaderService from './service/file-reader.service';
 import { FeeDto } from './dto';
 
 @Controller()

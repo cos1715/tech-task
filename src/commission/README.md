@@ -1,4 +1,4 @@
-## commission
+# commission
 
 This folder contains main logic in the app.
 
@@ -17,6 +17,10 @@ There are 3 routes to use
   Fetches mock data from a JSON file.
 - POST /  
   Calculates fees based on the data provided in the request body.
+
+# service
+
+This folder contains all services that are used in commission.module file
 
 ## commission.service
 
