@@ -13,10 +13,14 @@ class CommissionController {
   ) {}
 
   @Get()
+  async calculateFeesFromFile() {
+    const data = await this.fileReaderService.readJsonFile(this.filePath);
+    return this.commissionService.calculateFees(data);
+  }
+
+  @Get('data')
   getMockData() {
-    const file = this.filePath;
-    console.log('🚀 ~ CommissionController ~ getMockData ~ file==>>', file);
-    return this.fileReaderService.readJsonFile();
+    return this.fileReaderService.readJsonFile(this.filePath);
   }
 
   @Post()
