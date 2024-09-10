@@ -4,7 +4,7 @@ async function loadApi<T>(url: string): Promise<T> {
     const data = await res.json();
     return data;
   } catch (e) {
-    return e;
+    throw new Error(`Failed to load data from ${url}`);
   }
 }
 

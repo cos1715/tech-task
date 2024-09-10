@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { getDateInfo, formatMoney, loadApi } from 'src/utils';
 import {
   FeeDto,
@@ -87,15 +87,15 @@ class CommissionService {
     } = data;
     const { amount } = operation;
 
-    if (type === 'cash_in' && this.cashIn) {
+    if (type === 'cash_in') {
       return this.calculateCashIn(amount);
     }
 
     if (type === 'cash_out') {
-      if (userType === 'natural' && this.cashOutNatural) {
+      if (userType === 'natural') {
         return this.calculateCashOutNatural(userId, amount, date);
       }
-      if (userType === 'juridical' && this.cashOutLegal) {
+      if (userType === 'juridical') {
         return this.calculateCashOutLegal(amount);
       }
     }
@@ -104,8 +104,12 @@ class CommissionService {
   }
 
   async calculateFees(data: FeeDto[]) {
-    await this.initializeFeeConfig();
-    return data.map((operation) => this.calculateCommission(operation));
+    try {
+      await this.initializeFeeConfig();
+      return data.map((operation) => this.calculateCommission(operation));
+    } catch (error) {
+      throw new HttpException(`Failed to calculate fees`, 500);
+    }
   }
 }
 
