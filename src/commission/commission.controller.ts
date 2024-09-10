@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, Inject } from '@nestjs/common';
-import PROVIDERS from 'src/const/providers';
+import PROVIDERS from '../const/providers';
 import CommissionService from './commission.service';
 import FileReaderService from './file-reader.service';
 import { FeeDto } from './dto';

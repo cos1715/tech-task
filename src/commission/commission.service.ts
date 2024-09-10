@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { getDateInfo, formatMoney, loadApi } from 'src/utils';
+import { getDateInfo, formatMoney, loadApi } from '../utils';
 import {
   FeeDto,
   IFeeConfigCashIn,
@@ -17,13 +17,12 @@ class CommissionService {
 
   weeklyLimitTracker: Record<string, number> = {};
 
-  private readonly CASH_IN_FEE_URL =
-    'https://developers.paysera.com/tasks/api/cash-in';
+  readonly CASH_IN_FEE_URL = 'https://developers.paysera.com/tasks/api/cash-in';
 
-  private readonly CASH_OUT_NATURAL_FEE_URL =
+  readonly CASH_OUT_NATURAL_FEE_URL =
     'https://developers.paysera.com/tasks/api/cash-out-natural';
 
-  private readonly CASH_OUT_LEGAL_FEE_URL =
+  readonly CASH_OUT_LEGAL_FEE_URL =
     'https://developers.paysera.com/tasks/api/cash-out-juridical';
 
   async initializeFeeConfig(): Promise<void> {
@@ -54,11 +53,12 @@ class CommissionService {
     amount: number,
     date: string,
   ) {
-    const { percents } = this.cashOutNatural;
+    const { percents, week_limit: weekLimit } = this.cashOutNatural;
+    const { amount: weekLimitAmount } = weekLimit;
     const { weekNo, year } = getDateInfo(date);
     const weekKey = `${userId}-${weekNo}-${year}`;
     const weeklyTotal = this.weeklyLimitTracker[weekKey] || 0;
-    const remainingFreeAmount = Math.max(0, 1000 - weeklyTotal);
+    const remainingFreeAmount = Math.max(0, weekLimitAmount - weeklyTotal);
 
     let feeAmount = 0;
     if (amount > remainingFreeAmount) {
